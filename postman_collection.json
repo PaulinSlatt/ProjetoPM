@@ -1,0 +1,108 @@
+{
+  "info": {
+    "name": "PM API - Test Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "version": "1.0.0",
+    "description": "Coleção para testar endpoints do projeto PM: policiais, envolvidos, ocorrencias e atualizacoes. Ajuste {{baseUrl}} se necessário."
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "Policial",
+      "item": [
+        {
+          "name": "Create Policial",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": null,\n  \"matricula\": \"PM12345\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": { "raw": "{{baseUrl}}/api/policiais", "host": ["{{baseUrl}}"], "path": ["api","policiais"] }
+          }
+        },
+        {
+          "name": "Get Policial",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/policiais/:id", "host": ["{{baseUrl}}"], "path": ["api","policiais",":id"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Envolvido",
+      "item": [
+        {
+          "name": "Create Envolvido",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"nome\": \"João da Silva\",\n  \"tipo\": \"VITIMA\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/api/envolvidos", "host": ["{{baseUrl}}"], "path": ["api","envolvidos"] }
+          }
+        },
+        {
+          "name": "Get Envolvido",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/envolvidos/:id", "host": ["{{baseUrl}}"], "path": ["api","envolvidos",":id"] } }
+        }
+      ]
+    },
+    {
+      "name": "Ocorrencia",
+      "item": [
+        {
+          "name": "Create Ocorrencia",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tipoCrime\": \"Furto\",\n  \"descricao\": \"Furto em residência, objetos eletrônicos levados.\",\n  \"dataHora\": \"2026-02-24T14:30:00\",\n  \"local\": \"Rua das Flores, 123\",\n  \"status\": \"ABERTA\",\n  \"policialResponsavelId\": 1,\n  \"envolvidosIds\": [1]\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": { "raw": "{{baseUrl}}/api/ocorrencias", "host": ["{{baseUrl}}"], "path": ["api","ocorrencias"] }
+          }
+        },
+        {
+          "name": "Get Ocorrencia",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/ocorrencias/:id", "host": ["{{baseUrl}}"], "path": ["api","ocorrencias",":id"] } }
+        },
+        {
+          "name": "List Ocorrencias",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/ocorrencias", "host": ["{{baseUrl}}"], "path": ["api","ocorrencias"], "query": [ { "key": "status", "value": "ABERTA" } ] } }
+        }
+      ]
+    },
+    {
+      "name": "AtualizacaoOcorrencia",
+      "item": [
+        {
+          "name": "Create Atualizacao",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "body": { "mode": "raw", "raw": "{\n  \"ocorrenciaId\": 1,\n  \"comentario\": \"Registro inicial efetuado; perícia agendada.\"\n}", "options": { "raw": { "language": "json" } } },
+            "url": { "raw": "{{baseUrl}}/api/atualizacoes", "host": ["{{baseUrl}}"], "path": ["api","atualizacoes"] }
+          }
+        },
+        {
+          "name": "Get Atualizacao",
+          "request": { "method": "GET", "header": [], "url": { "raw": "{{baseUrl}}/api/atualizacoes/:id", "host": ["{{baseUrl}}"], "path": ["api","atualizacoes",":id"] } }
+        }
+      ]
+    }
+  ]
+}
+
